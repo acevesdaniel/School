@@ -1,20 +1,12 @@
+/* Project Title: ADK Venue
+Student Names & ID's:
+Alicia Montoya 88946484
+Daniel Aceves 80532669
+Kevin Kunkel 80754055
+*/
+
 #include <stdio.h>
 #include <string.h>
-
-// Function prototypes
-int askForPackages();
-int capacityFunction(char typeOfEvent);
-float dayFunction(char typeOfEvent, int *dayOfEvent, char *dayString);
-
-double BasePrice(char typeOfEvent, int numOfPeople); 
-
-int foodOption();
-double foodPrice(int foodOption, int numPeople);
-
-int entertainmentOption();
-double entertainmentPrice(int entertainmentOption, int numPeople, float dayFunction);
-
-double totalPrice(double basePrice, double foodCost, double entertainmentCost, float dayFunction);
 
 // Supporting Functions
 int askForPackages() {
@@ -27,8 +19,6 @@ int askForPackages() {
     printf("Selections will be used to build custom 'packages' for your event.\n\n");
     printf("Please type 'yes' or 'no': ");
         
-        // suggest removing this: 'while(getchar() != '\n');'
-    
         // while loop to handle invalid outputs (not "yes" or "no").
         while(1){    
         fgets(option, sizeof(option), stdin);
@@ -103,7 +93,6 @@ float dayFunction(char typeOfEvent, int *dayOfEvent, char *dayString) {
     /*Based on the type of event, the switch asks the user for what day of the week they would like to hold their event.
     It also asks if they will use the venue for more than four hours.    
     */
-    
     switch (typeOfEvent) {
         
         case 'w':
@@ -153,7 +142,7 @@ float dayFunction(char typeOfEvent, int *dayOfEvent, char *dayString) {
 
     printf("\nYour %s is to be held on a ", eventString);
 
-    //The following srting from the swtich is derrived from day of event entry.
+    //The following string from the swtich is derrived from day of event entry.
     switch (*dayOfEvent) {
 
         case 1:
@@ -256,7 +245,7 @@ double BasePrice(char typeOfEvent, int numOfPeople) {
             break;
     }
 
-    //Based on the event chosen, a  base cost and a rate based on the number of people is is added and a base cost is established..
+    //Based on the event chosen, a  base cost and a rate based on the number of people is is added and a base cost is established.
     finalBase = baseCost + (baseCost * rate);
 
     printf("\nThe initial cost for your %s is $%.2lf; for %d guests, you can expect a base cost of $%.02lf.\n\n", eventString, baseCost, numOfPeople, finalBase);
@@ -376,6 +365,7 @@ double foodPrice(int foodOption, int numPeople) {
         printf("The fee is based on the number of expected guests; the fee per guest is in the amount of $%.02lf.", pricePerPlate);
     }
 
+    //switch statement for menu choice based on caterer.
     switch (foodOption) {
     case 1:
         
@@ -438,12 +428,12 @@ int entertainmentOption() {
 
     //Base entertainment selections
     printf("\nEntertainment Options:\n\n");
-    printf("1 - DJ of all genres\n"); //500
-    printf("2 - Mariachi (mexican music group)\n"); //800
-    printf("3 - Classical Orchestra\n"); //900
-    printf("4 - Zippy the Clown\n"); //500
-    printf("5 - Client-provided entertainment\n"); //100
-    printf("6 - No entertainment required\n\n");  //0
+    printf("1 - DJ of all genres: $1000\n"); 
+    printf("2 - Mariachi (mexican music group): $1750\n"); 
+    printf("3 - Classical Orchestra: $2100\n"); 
+    printf("4 - Zippy the Clown: $500\n"); 
+    printf("5 - Client-provided entertainment: $100\n"); 
+    printf("6 - No entertainment required: $0\n\n");  
     printf("Enter your choice: ");
     scanf("%d", &baseOption);
     getchar();
@@ -467,10 +457,10 @@ int entertainmentOption() {
         //Extras prompts
         printf("Would you like to add an extra from the list below? (choose one)\n\n");
         printf("Extras:\n");
-        printf("1 - Kids Room (playtime room)\n");  //400
-        printf("2 - Jumping Balloon\n");  //300
-        printf("3 - Candy Bar (sweets and deserts)\n"); //200
-        printf("4 - No extra required\n\n");
+        printf("1 - Kids Room (playtime room): $800\n"); 
+        printf("2 - Jumping Balloon: $400\n"); 
+        printf("3 - Candy Bar (sweets and deserts): $600\n");
+        printf("4 - No extra required: $0\n\n");
         printf("Enter your choice: ");
         scanf("%d", &extraOption);
         getchar();
@@ -495,7 +485,7 @@ return entertainmentOption;
 }
 
 double entertainmentPrice(int entertainmentOption, int numPeople, float dayFunction) {
-//Function for entertainment package
+//Function for entertainment price
     double price;
     double rate = numPeople * .1;
 
@@ -692,7 +682,7 @@ void main() {
     baseCost = BasePrice(typeOfEvent, numOfPeople);
 
     /*These first two assignments call the respective functions for use in the following functions. Prompts to user to update/change any of these initial responses 
-    immidiately follows this comment section.
+    immediately follows this comment section.
     */
 
             //Update to amount of event type and guests is prompted and executed if required.
@@ -790,12 +780,13 @@ void main() {
         } 
     }
 
-    //No cost associated for entertainment or food. Posibly for mafia types...    
+    //No cost associated for entertainment or food.  
+    //Food and entertainment are free of charge, possibly for special scenarios 
     else {
         foodCost = entertainmentCost = 0.0;
     }
 
-    //A total cost is calculated usining the totalPrice function.
+    //A total cost is calculated using the totalPrice function.
     totalCost = totalPrice(baseCost, foodCost, entertainmentCost, dayFactor);
     //Final Prompts
     printf("\nFINAL EVENT SUMMARY:\n\n");
@@ -807,3 +798,4 @@ void main() {
     printf("The base cost for your event is $%.2lf\nTotal food cost: $%.2lf\nTotal base entertainment cost: $%.2lf\n", baseCost, foodCost, entertainmentCost);
     printf("\nThe total estimated cost for %d guests amounts to: $%.2lf\n\n", numOfPeople, totalCost);
 }
+
