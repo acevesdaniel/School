@@ -70,8 +70,9 @@ int capacityFunction(char typeOfEvent) {
 
 float dayFunction(char typeOfEvent, int *dayOfEvent, char *dayString) {
 //Handles day selection based on type of event.
-//Adds an overtime charge exceeding 4 hours.
-//Returns a multiplier ( timeofEvent = 4, or 6 for overtime).
+//Adds a charge, greater for events exceeding 4 hours.
+//Returns an amount (timeofEvent = 4, or 6 for overtime).
+     
     char eventString[25];
     char overtimeResponse;
 
@@ -100,8 +101,7 @@ float dayFunction(char typeOfEvent, int *dayOfEvent, char *dayString) {
     printf("\nWhat day would you like to host your %s?\n\n", eventString);
     
     /*Based on the type of event, the switch asks the user for what day of the week they would like to hold their event.
-    It also asks if they will use the venue for more than four hours. dayString
-    
+    It also asks if they will use the venue for more than four hours.    
     */
     
     switch (typeOfEvent) {
@@ -153,7 +153,7 @@ float dayFunction(char typeOfEvent, int *dayOfEvent, char *dayString) {
 
     printf("\nYour %s is to be held on a ", eventString);
 
-    //String is derrived from day of event.
+    //The following srting from the swtich is derrived from day of event entry.
     switch (*dayOfEvent) {
 
         case 1:
