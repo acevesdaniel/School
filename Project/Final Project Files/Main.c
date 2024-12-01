@@ -760,7 +760,7 @@ void main() {
             //Day function is prompted to user
             do {
             
-                dayFactor = dayFunction(typeOfEvent, &dayOfEvent, &dayString);
+                dayFactor = dayFunction(typeOfEvent, &dayOfEvent, dayString);
                 printf("\nIs this correct? [Y/n]\n\nIf not, or if you would like\nto ammend your response type 'n'.\nResponse: ");
                 scanf("%c", &responseB);
                 getchar();
